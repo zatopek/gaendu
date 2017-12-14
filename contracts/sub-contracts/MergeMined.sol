@@ -1,7 +1,8 @@
 pragma solidity ^0.4.8;
+import "../../installed_contracts/tokens/contracts/HumanStandardToken.sol";
 
-contract MergeMined {
+contract MergeMined is HumanStandardToken{
     function giveBlockReward() {
-        balanceOf[block.coinbase] += 1;
+        balances[block.coinbase] += 1;
     }
 }

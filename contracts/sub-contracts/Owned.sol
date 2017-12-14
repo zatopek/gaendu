@@ -5,13 +5,14 @@ contract Owned {
     
     struct CoOwner {
         address addr;
-        unit allowance;
+        uint allowance;
+        bool isValue;
     }
 
     uint numberOfCoOwners;
     mapping(address => CoOwner) coOwners;
 
-    function owned() {
+    function owned() public {
         owner = msg.sender;
     }
 
@@ -25,10 +26,10 @@ contract Owned {
         _;
     }
 
-    function addOwner(address coowner, uint allowance) onlyOwner {
-        if(coOwners[coowner].isValue) throw;
+    function addOwner(address coowner, uint allowance) public onlyOwner {
+        require(coOwners[coowner].isValue == true);
 
-        coOwners[coowner] = CoOwner{ addr: coowner, allowance: allowance};
+        coOwners[coowner] = CoOwner({ addr: coowner, allowance: allowance, isValue : false});
         coOwners[coowner].isValue = true;
     }
 
