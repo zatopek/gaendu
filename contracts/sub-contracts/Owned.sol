@@ -2,35 +2,16 @@ pragma solidity ^0.4.8;
 
 contract Owned {
     address owner;
-    
-    struct CoOwner {
-        address addr;
-        uint allowance;
-        bool isValue;
-    }
-
     uint numberOfCoOwners;
-    mapping(address => CoOwner) coOwners;
-
-    function owned() public {
-        owner = msg.sender;
-    }
+	
+    struct CoOwner {
+		address addr;
+		uint allowance;
+		bool isValue;
+	}
 
     modifier onlyOwner {
-        require(msg.sender == owner);
+        require(owner == msg.sender);
         _;
     }
-
-    modifier onlyCoOwner {
-        require(coOwners[msg.sender].isValue);
-        _;
-    }
-
-    function addOwner(address coowner, uint allowance) public onlyOwner {
-        require(coOwners[coowner].isValue == true);
-
-        coOwners[coowner] = CoOwner({ addr: coowner, allowance: allowance, isValue : false});
-        coOwners[coowner].isValue = true;
-    }
-
 }
