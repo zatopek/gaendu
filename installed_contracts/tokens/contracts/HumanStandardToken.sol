@@ -24,9 +24,9 @@ contract HumanStandardToken is StandardToken {
     They allow one to customise the token contract & in no way influences the core functionality.
     Some wallets/interfaces might not even bother to look at this information.
     */
-    string name;                   //fancy name: eg Simon Bucks
+    string public name;                   //fancy name: eg Simon Bucks
     uint8 decimals;                //How many decimals to show. ie. There could 1000 base units with 3 decimals. Meaning 0.980 SBX = 980 base units. It's like comparing 1 wei to 1 ether.
-    string symbol;                 //An identifier: eg SBX
+    string public symbol;                 //An identifier: eg SBX
     string public version = "H0.1";       //human 0.1 standard. Just an arbitrary versioning scheme.
 
 
@@ -41,4 +41,5 @@ contract HumanStandardToken is StandardToken {
         require(_spender.call(bytes4(bytes32(keccak256("receiveApproval(address,uint256,address,bytes)"))), msg.sender, _value, this, _extraData));
         return true;
     }
+
 }

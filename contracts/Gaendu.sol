@@ -11,7 +11,7 @@ contract Gaendu is HumanStandardToken, Owned {
         string _symbol
         ) public {
         owner = msg.sender;
-        balances[msg.sender] = _initialAmount;
+        balances[owner] = _initialAmount;
         name = _name;
         symbol = _symbol;
         totalSupply = _initialAmount;

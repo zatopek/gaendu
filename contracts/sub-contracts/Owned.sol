@@ -6,7 +6,7 @@ contract Owned {
 	
     struct CoOwner {
 		address addr;
-		uint allowance;
+		uint256 allowance;
 		bool isValue;
 	}
 
@@ -25,10 +25,14 @@ contract Owned {
         return coowners[coowner].isValue;
     }
 
-    function addCoOwner(address coowner, uint allowance) public returns (bool result) {
+    function addCoOwner(address coowner, uint256 allowance) public returns (bool result) {
         require(coowners[coowner].isValue == false);
-        coowners[coowner] = CoOwner({addr: coowner, allowance: allowance, isValue: true});        
+        coowners[coowner] = CoOwner({addr: coowner, allowance: allowance, isValue: true}); 
+        numberOfCoOwners += 1;
+        OwnerAdded(coowner, allowance);       
         return true;
     }
+
+    event OwnerAdded(address indexed _coowner, uint256 _value);
 
 } 
