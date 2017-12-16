@@ -7,7 +7,6 @@ contract Gaendu is HumanStandardToken, Owned {
 
     function Gaendu (
         uint256 _initialAmount,
-        uint256 _totalSupply,
         string _name,
         string _symbol
         ) public {
@@ -15,6 +14,6 @@ contract Gaendu is HumanStandardToken, Owned {
         balances[msg.sender] = _initialAmount;
         name = _name;
         symbol = _symbol;
-        totalSupply = _totalSupply;
+        totalSupply = _initialAmount;
     }
 }

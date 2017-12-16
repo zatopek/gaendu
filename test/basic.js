@@ -9,6 +9,7 @@ contract('Gaendu', function(accounts){
         return Gaendu.deployed().then(function(instance){
             return instance.balances.call(accounts[0]);
         }).then(function(balance){
+            console.log(balance.valueOf());
             assert(balance.valueOf(), 1000000, 'Invalid initial amount');
         });            
     });
